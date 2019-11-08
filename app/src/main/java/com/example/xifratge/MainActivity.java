@@ -12,8 +12,6 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.RandomAccessFile;
 import java.util.Calendar;
@@ -66,15 +64,14 @@ public class MainActivity extends AppCompatActivity {
 
             decodedText = decodeRsa.Decrypt(encodedText);
             textEncoded.setText(decodedText);
-            writeToFile(createXML(password, encodedText) ,getApplicationContext());
+            writeTheFile(createXML(password, encodedText) ,getApplicationContext());
 
         } catch (Exception e) {
-            System.out.println("An error ocurred encrypting the password");
+            System.out.println("There was a problem encrypting the text");
         }
     }
 
-        public String createXML(String userText, String userTextCrypt) throws
-        IOException {
+        public String createXML(String userText, String userTextCrypt) {
         try {
             BufferedReader reader = new BufferedReader(new FileReader("password.xml"));
             int lines = 0;
@@ -106,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
-    private void writeToFile(String data, Context context) {
+    private void writeTheFile(String data, Context context) {
         try
         {
             String filename= "password.xml";
@@ -130,8 +127,5 @@ public class MainActivity extends AppCompatActivity {
             Log.e("Exception", "File write failed: " + e.toString());
             }
         }
-
     }
-
-
 }
